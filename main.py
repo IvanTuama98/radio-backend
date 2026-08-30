@@ -2,6 +2,7 @@
 from fastapi import FastAPI, Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordRequestForm
 import auth
+import os
 
 # Importamos el middleware para permitir peticiones desde el frontend (CORS)
 from fastapi.middleware.cors import CORSMiddleware
@@ -50,8 +51,12 @@ app.add_middleware(
 # SEGURIDAD Y AUTENTICACIÓN
 # ---------------------------------------------------------------------------
 
-ADMIN_USER = "admin"
-ADMIN_PASSWORD_HASH = auth.obtener_password_hash("A7PsmL3W1XGwVD")
+# Lee los valores desde las Variables de Entorno del servidor
+ADMIN_USER = os.getenv("ADMIN_USER", "admin")
+
+# Lee la contraseña del entorno
+RAW_ADMIN_PASSWORD = os.getenv("ADMIN_PASSWORD", "A7PsmL3W1XGwVD")
+ADMIN_PASSWORD_HASH = auth.obtener_password_hash(RAW_ADMIN_PASSWORD)
 
 
 @app.post("/api/login")
