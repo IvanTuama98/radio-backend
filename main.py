@@ -55,7 +55,7 @@ app.add_middleware(
 ADMIN_USER = os.getenv("ADMIN_USER", "admin")
 
 # Lee la contraseña del entorno
-RAW_ADMIN_PASSWORD = os.getenv("ADMIN_PASSWORD", "A7PsmL3W1XGwVD")
+RAW_ADMIN_PASSWORD = os.getenv("ADMIN_PASSWORD", "clave_de_prueba_local")
 ADMIN_PASSWORD_HASH = auth.obtener_password_hash(RAW_ADMIN_PASSWORD)
 
 
