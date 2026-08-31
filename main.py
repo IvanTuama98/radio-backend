@@ -39,6 +39,18 @@ db.close()
 # Instancia principal de la aplicación FastAPI
 app = FastAPI(title="Radio La Pelota No Se Mancha API")
 
+@app.get("/")
+def home():
+    return {
+        "nombre": "La Pelota No Se Mancha",
+        "frecuencia": "FM 96.5",
+        "eslogan": "La radio del deporte y de la buena música.",
+        "stream_url": "http://subituradio.com:8042", # O la URL de tu streaming
+        "whatsapp": "543437441448",
+        "facebook": "https://facebook.com",
+        "youtube": "https://youtube.com"
+    }
+
 # Habilitamos CORS para que el cliente HTML/JS pueda hacer peticiones al servidor
 app.add_middleware(
     CORSMiddleware,
