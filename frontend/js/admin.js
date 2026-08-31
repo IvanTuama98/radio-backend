@@ -1,4 +1,4 @@
-const API_URL = "https://radio-backend-08we.onrender.com/";
+const API_URL = "https://radio-backend-08we.onrender.com";
 
 // --- UTILIDADES DE INTERFAZ ---
 
