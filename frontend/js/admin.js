@@ -89,7 +89,8 @@ function cerrarSesion() {
 
 async function cargarDatos() {
     try {
-        const res = await fetch(`${API_URL}/info`);
+        // CORREGIDO: Se consulta a la raíz de la API
+        const res = await fetch(`${API_URL}`);
         if (res.ok) {
             const data = await res.json();
             setInputValue('nombre', data.nombre);
@@ -153,7 +154,8 @@ document.getElementById('form-admin')?.addEventListener('submit', async (e) => {
 
 async function cargarNovedades() {
     try {
-        const res = await fetch(`${API_URL}/novedades`);
+        // CORREGIDO: Se agregó /api/novedades para coincidir con main.js y FastAPI
+        const res = await fetch(`${API_URL}/api/novedades`);
         if (res.ok) {
             const novedades = await res.json();
             const lista = document.getElementById('lista-novedades');
@@ -165,7 +167,7 @@ async function cargarNovedades() {
                 li.className = 'list-group-item d-flex justify-content-between align-items-center';
                 li.innerHTML = `
                     <div>
-                        <strong>${nov.titulo}</strong> (${nov.fecha})
+                        <strong>${nov.titulo}</strong> (${nov.fecha || ''})
                         <p class="mb-0 text-muted small">${nov.contenido}</p>
                     </div>
                     <button class="btn btn-sm btn-outline-danger" onclick="eliminarNovedad(${nov.id})">Eliminar</button>
