@@ -45,7 +45,7 @@ def home():
         "nombre": "La Pelota No Se Mancha",
         "frecuencia": "FM 96.5",
         "eslogan": "La radio del deporte y de la buena música.",
-        "stream_url": "http://subituradio.com:8042", # O la URL de tu streaming
+        "stream_url": "https://stream.zeno.fm/f3wvbbqmdg8uv", # O la URL de tu streaming
         "whatsapp": "543437441448",
         "facebook": "https://facebook.com",
         "youtube": "https://youtube.com"
