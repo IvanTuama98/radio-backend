@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Administración - Radio</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-dark text-white">
+
+    <div class="container py-5" style="max-width: 600px;">
+        <h1 class="mb-4 text-center">Panel de Control - Radio</h1>
+
+        <!-- Alerta global de notificaciones -->
+        <div id="alerta" class="alert d-none" role="alert"></div>
+
+        <!-- 1. FORMULARIO DE LOGIN (Siempre visible) -->
+        <div class="card bg-secondary text-white p-4 shadow mb-4">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h3 class="m-0">Iniciar Sesión</h3>
+                <button type="button" class="btn btn-sm btn-outline-light" onclick="cerrarSesion()">Cerrar Sesión</button>
+            </div>
+            <form id="form-login">
+                <div class="mb-3">
+                    <label class="form-label">Usuario</label>
+                    <input type="text" id="login-usuario" class="form-control" placeholder="Ej: admin" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Contraseña</label>
+                    <input type="password" id="login-password" class="form-control" placeholder="Ingresa tu contraseña" required>
+                </div>
+                <button type="submit" class="btn btn-warning w-100 fw-bold">Ingresar al Panel</button>
+            </form>
+        </div>
+
+        <!-- 2. PANEL PRIVADO (Oculto hasta autenticarse correctamente) -->
+        <div id="panel-privado" class="d-none">
+
+            <!-- Publicar y gestionar novedades -->
+            <div class="card bg-secondary text-white p-4 shadow mb-4">
+                <h3 class="mb-3">Publicar Novedad / Aviso</h3>
+                <form id="form-novedad">
+                    <div class="mb-3">
+                        <label class="form-label">Título</label>
+                        <input type="text" id="nov-titulo" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Contenido</label>
+                        <textarea id="nov-contenido" class="form-control" rows="3" required></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Fecha</label>
+                        <input type="date" id="nov-fecha" class="form-control" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100 fw-bold">Publicar Novedad</button>
+                </form>
+
+                <hr class="my-4">
+
+                <h4>Novedades Publicadas</h4>
+                <ul id="lista-novedades" class="list-group text-dark mt-3"></ul>
+            </div>
+
+            <!-- Configuración general de la emisora -->
+            <form id="form-admin" class="card bg-secondary text-white p-4 shadow">
+                <h3 class="mb-3">Configuración de la Emisora</h3>
+                <div class="mb-3">
+                    <label class="form-label">Nombre de la Radio</label>
+                    <input type="text" id="nombre" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Frecuencia</label>
+                    <input type="text" id="frecuencia" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Eslogan</label>
+                    <input type="text" id="eslogan" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">URL del Streaming</label>
+                    <input type="url" id="stream_url" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Número de WhatsApp</label>
+                    <input type="text" id="whatsapp" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Enlace de Facebook</label>
+                    <input type="url" id="facebook" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label for="youtube" class="form-label">Canal de YouTube</label>
+                    <input type="text" id="youtube" class="form-control" placeholder="https://youtube.com/@tucanal">
+                </div>
+
+                <button type="submit" id="btn-guardar" class="btn btn-success w-100 fw-bold">Guardar Cambios</button>
+            </form>
+
+        </div>
+
+        <div class="text-center mt-3">
+            <a href="index.html" class="text-info text-decoration-none">&larr; Volver a la página principal</a>
+        </div>
+    </div>
+
+    <script src="js/admin.js"></script>
+</body>
+</html>

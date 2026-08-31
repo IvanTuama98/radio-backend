@@ -1,0 +1,76 @@
+const API_URL = 'http://127.0.0.1:8000/api/emisora';
+const API_NOVEDADES = 'http://127.0.0.1:8000/api/novedades';
+
+async function cargarEmisora() {
+    try {
+        const response = await fetch(API_URL);
+        const data = await response.json();
+
+        // Carga de audio
+        const audio = document.getElementById('audio-player');
+        audio.src = data.stream_url;
+
+        // Carga de datos
+        document.getElementById('radio-nombre').textContent = `${data.nombre} ${data.frecuencia}`;
+        document.getElementById('radio-eslogan').textContent = data.eslogan;
+
+        // Botones de redes
+        if (data.whatsapp) document.getElementById('btn-whatsapp').href = `https://wa.me/${data.whatsapp}`;
+        if (data.youtube) document.getElementById('btn-youtube').href = `${data.youtube}`;
+        if (data.facebook) document.getElementById('btn-facebook').href = data.facebook;
+
+        // Control del estado ON AIR / OFF AIR con el reproductor nativo
+        const liveIndicator = document.getElementById('live-indicator');
+
+        audio.addEventListener('play', () => {
+            liveIndicator.textContent = '● EN VIVO';
+            liveIndicator.classList.remove('bg-danger', 'bg-secondary', 'badge-off');
+            liveIndicator.classList.add('bg-success'); // Quita colores previos
+            liveIndicator.classList.replace('opacity-50', 'opacity-100');
+        });
+
+        audio.addEventListener('pause', () => {
+            liveIndicator.textContent = '● OFF AIR';
+            liveIndicator.classList.remove('bg-success'); // Quita el verde
+            liveIndicator.classList.add('bg-danger');
+            liveIndicator.classList.replace('opacity-100', 'opacity-50');
+        });
+
+    } catch (error) {
+        console.error("Error al cargar la emisora:", error);
+    }
+}
+
+async function cargarNovedadesPublicas() {
+    try {
+        const response = await fetch(API_NOVEDADES);
+        if (!response.ok) throw new Error('Error al obtener noticias');
+
+        const novedades = await response.json();
+        const contenedor = document.getElementById('contenedor-novedades');
+        
+        if (!contenedor) return;
+        contenedor.innerHTML = '';
+
+        novedades.forEach(nov => {
+            contenedor.innerHTML += `
+                <div class="col-md-6 mb-3">
+                    <div class="card bg-dark text-white h-100 border-secondary">
+                        <div class="card-body">
+                            <h5 class="card-title text-primary">${nov.titulo}</h5>
+                            <h6 class="card-subtitle mb-2 text-secondary">${nov.fecha}</h6>
+                            <p class="card-text">${nov.contenido}</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+        });
+    } catch (error) {
+        console.error('Error al cargar novedades:', error);
+    }
+}
+
+// Cargar automáticamente al abrir la página
+document.addEventListener('DOMContentLoaded', cargarNovedadesPublicas);
+
+cargarEmisora();

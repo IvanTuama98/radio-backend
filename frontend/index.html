@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Pelota No Se Mancha 96.5 FM</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-dark text-white text-center p-4">
+
+    <div class="container py-3">
+        <!-- Encabezado corregido -->
+        <h1 id="radio-nombre" class="display-5 fw-bold text-light mb-1">Cargando...</h1>
+        <p id="radio-eslogan" class="lead text-secondary mb-4"></p>
+
+        <!-- Tarjeta del Reproductor -->
+        <div class="card bg-secondary text-white mx-auto p-4 shadow-lg rounded-4 border-0" style="max-width: 420px;">
+            
+            <!-- Estado de transmisión -->
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <span class="small fw-bold text-uppercase text-light opacity-75">Transmisión en vivo</span>
+                <span id="live-indicator" class="badge bg-danger rounded-pill px-3 py-2 text-uppercase fw-bold opacity-50">
+                    ● OFF AIR
+                </span>
+            </div>
+
+            <!-- Reproductor con controles completos (Play, Pause, Volumen) -->
+            <audio id="audio-player" controls class="w-100 mt-2 mb-1"></audio>
+        </div>
+
+        <!-- Enlaces a Redes -->
+        <div class="d-flex justify-content-center gap-2 mt-4">
+            <a id="btn-whatsapp" href="#" target="_blank" class="btn btn-success px-4 py-2 fw-semibold">
+                WhatsApp
+            </a>
+            <a id="btn-youtube" href="#" target="_blank" class="btn btn-danger px-4 py-2 fw-semibold">
+                Youtube
+            </a>
+            <a id="btn-facebook" href="#" target="_blank" class="btn btn-primary px-4 py-2 fw-semibold">
+                Facebook
+            </a>
+        </div>
+    </div>
+
+    <section class="container my-5 d-none">
+        <h2>Últimas Novedades</h2>
+        <div id="contenedor-novedades" class="row g-3">
+            <!-- Las tarjetas se cargarán dinámicamente aquí -->
+        </div>
+    </section>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
