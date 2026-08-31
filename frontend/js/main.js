@@ -1,4 +1,4 @@
-const API_URL = 'http://127.0.0.1:8000/api/emisora';
+const API_URL = 'https://radio-backend-08we.onrender.com/';
 const API_NOVEDADES = 'http://127.0.0.1:8000/api/novedades';
 
 async function cargarEmisora() {
